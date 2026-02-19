@@ -1,0 +1,8 @@
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.log
+src/ConnSniffer/logs/
+ConnSniffer.zip

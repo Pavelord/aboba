@@ -1,0 +1,44 @@
+name: Build Windows Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main", "work" ]
+    paths:
+      - "src/ConnSniffer/**"
+      - "ConnSniffer.sln"
+      - ".github/workflows/windows-release.yml"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Restore
+        run: dotnet restore ConnSniffer.sln
+
+      - name: Build
+        run: dotnet build ConnSniffer.sln -c Release --no-restore
+
+      - name: Publish
+        run: dotnet publish src/ConnSniffer/ConnSniffer.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+
+      - name: Prepare package
+        shell: pwsh
+        run: |
+          $publishDir = "src/ConnSniffer/bin/Release/net7.0-windows/win-x64/publish"
+          Copy-Item README.md "$publishDir/README.txt" -Force
+          Compress-Archive -Path "$publishDir/*" -DestinationPath "ConnSniffer-win-x64.zip" -Force
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ConnSniffer-win-x64
+          path: ConnSniffer-win-x64.zip
