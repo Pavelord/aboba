@@ -78,7 +78,6 @@ class UsbCallAudioRoute : Plugin() {
         if (::audioManager.isInitialized && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             runCatching { audioManager.clearCommunicationDevice() }
         }
-        commands.unregisterAll()
         patcher.unpatchAll()
     }
 
