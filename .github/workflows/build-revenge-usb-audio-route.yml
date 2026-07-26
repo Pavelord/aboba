@@ -1,0 +1,45 @@
+name: Build Revenge USB Audio Route Plugin
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, feature/revenge-usb-audio-route ]
+    paths:
+      - 'discord-usb-route-revenge/**'
+      - '.github/workflows/build-revenge-usb-audio-route.yml'
+  pull_request:
+    paths:
+      - 'discord-usb-route-revenge/**'
+      - '.github/workflows/build-revenge-usb-audio-route.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: discord-usb-route-revenge
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: discord-usb-route-revenge/package.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build plugin
+        run: npm run build
+
+      - name: Upload plugin files
+        uses: actions/upload-artifact@v4
+        with:
+          name: Revenge-UsbAudioRoute
+          path: discord-usb-route-revenge/dist/UsbAudioRoute
+          if-no-files-found: error
