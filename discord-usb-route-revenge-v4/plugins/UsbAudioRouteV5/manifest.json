@@ -1,0 +1,11 @@
+{
+  "name": "USB Call Audio Route v5",
+  "description": "Voice-aware USB routing with built-in diagnostics and manual tests for Discord/Revenge.",
+  "authors": [
+    {
+      "name": "Pavelord",
+      "id": "100000000000000000"
+    }
+  ],
+  "main": "src/index.tsx"
+}

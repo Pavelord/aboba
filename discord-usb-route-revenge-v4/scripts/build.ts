@@ -5,7 +5,7 @@ import swc from '@swc/core'
 import { rollup } from 'rollup'
 import esbuild from 'rollup-plugin-esbuild'
 
-const plugin = 'UsbAudioRouteV4'
+const plugin = 'UsbAudioRouteV5'
 const manifest = await Bun.file(`./plugins/${plugin}/manifest.json`).json()
 const hasher = new Bun.CryptoHasher('sha256')
 
