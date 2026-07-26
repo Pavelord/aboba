@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Discord USB Audio Route</string>
+    <string name="app_description">Принудительно направляет звук голосовых звонков Discord в подключённую USB-гарнитуру.</string>
+</resources>

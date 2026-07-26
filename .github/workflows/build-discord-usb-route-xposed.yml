@@ -1,0 +1,56 @@
+name: Build Discord USB Audio Route APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, feature/discord-usb-route-native ]
+    paths:
+      - 'discord-usb-route-xposed/**'
+      - '.github/workflows/build-discord-usb-route-xposed.yml'
+  pull_request:
+    paths:
+      - 'discord-usb-route-xposed/**'
+      - '.github/workflows/build-discord-usb-route-xposed.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Build signed debug APK
+        working-directory: discord-usb-route-xposed
+        run: gradle :app:assembleDebug --stacktrace
+
+      - name: Collect APK
+        run: |
+          mkdir -p artifacts
+          cp discord-usb-route-xposed/app/build/outputs/apk/debug/app-debug.apk \
+            artifacts/DiscordUsbAudioRoute-v1.1-debug.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: DiscordUsbAudioRoute-v1.1
+          path: artifacts/DiscordUsbAudioRoute-v1.1-debug.apk
+          if-no-files-found: error
