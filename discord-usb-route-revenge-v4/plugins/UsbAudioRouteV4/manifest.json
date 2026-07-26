@@ -1,0 +1,11 @@
+{
+  "name": "USB Call Audio Route v4",
+  "description": "Routes Discord voice audio to a connected USB headset using Discord's own audio module.",
+  "authors": [
+    {
+      "name": "Pavelord",
+      "id": "100000000000000000"
+    }
+  ],
+  "main": "src/index.ts"
+}
