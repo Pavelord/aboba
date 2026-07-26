@@ -1,9 +1,9 @@
-name: Build Revenge USB Audio Route v4
+name: Build Revenge USB Audio Route v5
 
 on:
   workflow_dispatch:
   push:
-    branches: [ main, feature/revenge-usb-audio-route-v4 ]
+    branches: [ main, feature/revenge-usb-audio-route-v5 ]
     paths:
       - 'discord-usb-route-revenge-v4/**'
       - '.github/workflows/build-revenge-usb-audio-route-v4.yml'
@@ -38,6 +38,6 @@ jobs:
       - name: Upload plugin files
         uses: actions/upload-artifact@v4
         with:
-          name: Revenge-UsbAudioRoute-v4
-          path: discord-usb-route-revenge-v4/dist/UsbAudioRouteV4
+          name: Revenge-UsbAudioRoute-v5
+          path: discord-usb-route-revenge-v4/dist/UsbAudioRouteV5
           if-no-files-found: error
