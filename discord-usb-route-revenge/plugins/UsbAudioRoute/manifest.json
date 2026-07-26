@@ -1,0 +1,14 @@
+{
+  "name": "USB Call Audio Route",
+  "description": "Keeps Discord voice-call output on a connected USB headset without forcing communication mode.",
+  "authors": [
+    {
+      "name": "Pavelord",
+      "id": "0"
+    }
+  ],
+  "main": "index.js",
+  "vendetta": {
+    "icon": "ic_audio"
+  }
+}
