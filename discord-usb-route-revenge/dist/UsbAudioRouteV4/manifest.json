@@ -1,0 +1,1 @@
+{"name":"USB Call Audio Route v4","description":"Routes Discord voice audio to a connected USB headset using Discord's own audio module.","authors":[{"name":"Pavelord","id":"100000000000000000"}],"main":"index.js","hash":"10a4b47f723e6271d3ae6e0e4d24a017e7c2eb4c87718d8632dbfb7209cc209f"}
