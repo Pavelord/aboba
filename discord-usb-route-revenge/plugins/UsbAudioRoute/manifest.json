@@ -1,6 +1,6 @@
 {
-  "name": "USB Call Audio Route",
-  "description": "Keeps Discord voice-call output on a connected USB headset without forcing communication mode.",
+  "name": "USB Call Audio Route v2",
+  "description": "Fail-safe USB headset routing for current Discord/Revenge. Startup stays enabled even while the Discord audio bridge is still loading.",
   "authors": [
     {
       "name": "Pavelord",
